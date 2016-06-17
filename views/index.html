@@ -1,0 +1,10 @@
+<!DOCTYPE html><html><head><title></title><link rel="stylesheet" href="/stylesheets/style.css"><link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></head><body><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script><script src="/javascripts/index.js"></script><script>function hideAllRows(name, otherName) {
+    if($(name).is(':visible')) {
+        $(name).hide();
+        $(otherName).text('Hidden!');
+    }
+    else{
+        $(name).show();
+        $(otherName).text('15');
+    }
+};</script><body class="container-fluid"><div class="row"><div class="col-md-3"><button type="button" id="successfulBtn" onclick="hideAllRows(&quot;.success&quot;, &quot;.success-badge&quot;)" class="btn btn-success btn-block">Successful&nbsp<span class="badge success-badge">15</span></button></div><div class="col-md-3"><button type="button" class="btn btn-warning btn-block">Partial Success&nbsp<span class="badge">15</span></button></div><div class="col-md-3"><button type="button" class="btn btn-danger btn-block">Failure&nbsp<span class="badge">15</span></button></div><div class="col-md-3"><button type="button" class="btn btn-other btn-block">Active&nbsp<span class="badge">15</span></button></div></div><div class="row"><div class="col-md-12"><table class="table table-striped table-bordered"><thead><tr><th>#</th><th>Name</th><th>Date</th><th>Other</th></tr></thead><tbody><tr id="someStuff" class="success someStuff"><th>1</th><td>Daniel</td><td>The Dude</td><td>Some stuff</td></tr><tr class="warning"><th>1</th><td>Daniel</td><td>The Dude</td><td>Some stuff</td></tr><tr class="danger"><th>1</th><td>Daniel</td><td>The Dude</td><td>Some stuff</td></tr><tr class="other"><th>1</th><td>Daniel</td><td>The Dude</td><td>Some stuff</td></tr></tbody></table></div></div></body></body></html>
