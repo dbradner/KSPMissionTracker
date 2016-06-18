@@ -10,66 +10,71 @@ html( lang="en" )
         meta( name='description', content='TESTING' )
 
     block content
-        script( src='/javascripts/index.js' )
+        script( src='/javascripts/viewScripts/indexView.js' )
+
         script.
-            function hideAllRows(name, otherName) {
-                if($(name).is(':visible')) {
-                    $(name).hide();
-                    $(otherName).text('Hidden!');
-                }
-                else{
-                    $(name).show();
-                    $(otherName).text('15');
-                }
-            };
-        body.container-fluid
-            .row
-                .col-md-3
-                    button(type = 'button', id='successfulBtn', onclick='hideAllRows(".success", ".success-badge")').btn.btn-success.btn-block Successful&nbsp
-                        span.badge.success-badge 15
-                .col-md-3
-                    button(type = 'button').btn.btn-warning.btn-block Partial Success&nbsp
-                        span.badge 15
-                .col-md-3
-                    button(type = 'button').btn.btn-danger.btn-block Failure&nbsp
-                        span.badge 15
-                .col-md-3
-                    button(type = 'button').btn.btn-other.btn-block Active&nbsp
-                        span.badge 15
-                .col-md-3
-                    button(type = 'button').btn.btn-other.btn-block SOMECHANGES
-                        span.badge 15
+            $(function () {
+                $("#successfulBtn").click(function () {
+                    UIAction.toggleAllRowsOfType(".success", ".success-badge");
+                });
 
-            .row
-                .col-md-12
-                    table.table.table-striped.table-bordered
-                        thead
-                            tr
-                                th #
-                                th Name
-                                th Date
-                                th Other
-                        tbody
-                            tr(id='someStuff').success.someStuff
-                                th 1
-                                td Daniel
-                                td The Dude
-                                td Some stuff
+                $("#partialSuccessBtn").click(function () {
+                    UIAction.toggleAllRowsOfType(".warning", ".partialSuccess-badge");
+                });
 
-                            tr.warning
-                                th 1
-                                td Daniel
-                                td The Dude
-                                td Some stuff
+                $("#failureBtn").click(function () {
+                    UIAction.toggleAllRowsOfType(".danger", ".failure-badge");
+                });
 
-                            tr.danger
-                                th 1
-                                td Daniel
-                                td The Dude
-                                td Some stuff
+                $("#activeBtn").click(function () {
+                    UIAction.toggleAllRowsOfType(".other", ".active-badge");
+                });
 
-                            tr.other
-                                th 1
-                                td Daniel
-                                td The Dude
-                                td Some stuff
+            });
+        .row
+            .col-md-3
+                button.btn.btn-success.btn-block(type = 'button', id='successfulBtn') Successful&nbsp
+                    span.badge.success-badge 15
+            .col-md-3
+                button(type = 'button', id='partialSuccessBtn').btn.btn-warning.btn-block Partial Success&nbsp
+                    span.badge.partialSuccess-badge 15
+            .col-md-3
+                button(type = 'button', id='failureBtn').btn.btn-danger.btn-block Failure&nbsp
+                    span.badge.failure-badge 15
+            .col-md-3
+                button(type = 'button', id='activeBtn').btn.btn-other.btn-block Active&nbsp
+                    span.badge.active-badge 15
+
+        .row
+            .col-md-12
+                table.table.table-striped.table-bordered
+                    thead
+                        tr
+                            th #
+                            th Name
+                            th Date
+                            th Other
+                    tbody
+                        tr().success
+                            th 1
+                            td Daniel
+                            td The Dude
+                            td Some stuff
+
+                        tr.warning
+                            th 1
+                            td Daniel
+                            td The Dude
+                            td Some stuff
+
+                        tr.danger
+                            th 1
+                            td Daniel
+                            td The Dude
+                            td Some stuff
+
+                        tr.other
+                            th 1
+                            td Daniel
+                            td The Dude
+                            td Some stuff
