@@ -10,7 +10,7 @@ html( lang="en" )
         meta( name='description', content='TESTING' )
 
     block content
-        script( src='/javascripts/viewScripts/indexView.js' )
+        script( src='/scripts/indexView.js' )
 
         script.
             $(function () {
@@ -31,6 +31,10 @@ html( lang="en" )
                 });
 
             });
+
+            $("#rowFilter").keyup(function(){
+                filterRows($(this).val().toString().toLowerCase());
+            })
         .row
             .col-md-3
                 button.btn.btn-success.btn-block(type = 'button', id='successfulBtn') Successful&nbsp
@@ -57,24 +61,24 @@ html( lang="en" )
                     tbody
                         tr().success
                             th 1
-                            td Daniel
+                            td.name-col-filterable Daniel
                             td The Dude
                             td Some stuff
 
                         tr.warning
                             th 1
-                            td Daniel
+                            td.name-col-filterable Potator
                             td The Dude
                             td Some stuff
 
                         tr.danger
                             th 1
-                            td Daniel
+                            td.name-col-filterable Testing123
                             td The Dude
                             td Some stuff
 
                         tr.other
                             th 1
-                            td Daniel
+                            td.name-col-filterable Hey Man, What's up
                             td The Dude
                             td Some stuff
