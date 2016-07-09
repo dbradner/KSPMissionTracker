@@ -6,7 +6,9 @@ import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
 import * as indexRoute from "./routes/index";
-import * as addRoute from "./routes/add";
+import * as addMissionRoute from "./routes/addMission";
+import * as editMissionRoute from "./routes/editMission";
+import * as deleteMissionRoute from "./routes/deleteMission";
 
 /**
  * The server.
@@ -93,11 +95,15 @@ class Server {
 
         //create routes
         var index: indexRoute.Index = new indexRoute.Index();
-        var add: addRoute.Add = new addRoute.Add();
+        var addMission: addMissionRoute.AddMission = new addMissionRoute.AddMission();
+        var editMission: editMissionRoute.EditMission = new editMissionRoute.EditMission();
+        var deleteMission: deleteMissionRoute.DeleteMission = new deleteMissionRoute.DeleteMission();
 
         //home page
         router.get("/", index.index.bind(index.index));
-        router.get("/add", add.add.bind(add.add));
+        router.get("/addMission", addMission.addMission.bind(addMission.addMission));
+        router.get("/editMission", editMission.editMission.bind(editMission.editMission));
+        router.get("/deleteMission", deleteMission.deleteMission.bind(deleteMission.deleteMission));
 
         //use router middleware
         this.app.use(router);

@@ -3,7 +3,9 @@ var bodyParser = require("body-parser");
 var express = require("express");
 var path = require("path");
 var indexRoute = require("./routes/index");
-var addRoute = require("./routes/add");
+var addMissionRoute = require("./routes/addMission");
+var editMissionRoute = require("./routes/editMission");
+var deleteMissionRoute = require("./routes/deleteMission");
 var Server = (function () {
     function Server() {
         this.app = express();
@@ -30,9 +32,13 @@ var Server = (function () {
         var router;
         router = express.Router();
         var index = new indexRoute.Index();
-        var add = new addRoute.Add();
+        var addMission = new addMissionRoute.AddMission();
+        var editMission = new editMissionRoute.EditMission();
+        var deleteMission = new deleteMissionRoute.DeleteMission();
         router.get("/", index.index.bind(index.index));
-        router.get("/add", add.add.bind(add.add));
+        router.get("/addMission", addMission.addMission.bind(addMission.addMission));
+        router.get("/editMission", editMission.editMission.bind(editMission.editMission));
+        router.get("/deleteMission", deleteMission.deleteMission.bind(deleteMission.deleteMission));
         this.app.use(router);
     };
     return Server;
