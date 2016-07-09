@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var express = require("express");
 var path = require("path");
 var indexRoute = require("./routes/index");
+var addRoute = require("./routes/add");
 var Server = (function () {
     function Server() {
         this.app = express();
@@ -29,7 +30,9 @@ var Server = (function () {
         var router;
         router = express.Router();
         var index = new indexRoute.Index();
+        var add = new addRoute.Add();
         router.get("/", index.index.bind(index.index));
+        router.get("/add", add.add.bind(add.add));
         this.app.use(router);
     };
     return Server;

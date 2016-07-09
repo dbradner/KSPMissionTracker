@@ -21,7 +21,8 @@ module.exports = function(grunt) {
                 configuration: "tslint.json"
             },
             files: {
-                src: ["src/**/*.ts"]
+                src: ["src/**/*.ts"],
+                public: ["public/**/*.ts"]
             }
         },
         watch: {
