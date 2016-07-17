@@ -8,7 +8,7 @@ module Route {
     export class EditMission {
 
         public editMission(req: express.Request, res: express.Response, next: express.NextFunction) {
-            //render page
+            // render page
             res.render("editMission");
         }
     }

@@ -26,17 +26,32 @@ gulp.task('ts-lint', function(){
 
 // ## THINGS TO RUN FOR DEV BUILDS ## //
 
+gulp.task('clean-dev', function () {
+    return del(['dist/dev']);
+});
 
+gulp.task('build-js-dev', ['ts-lint', 'clean-dev'], function () {
+    return gulp.src(["src/**/*.ts", "public/scripts/**.ts]", "!public/scripts/lib/*.d.ts"])
+        .pipe(typescript())
+        .pipe(gulp.dest('dist/dev/verbose'))
+        .pipe(concat('KSPMT.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/dev'));
+});
+
+gulp.task('build-all-dev', ['ts-lint'], function(){
+    util.log(util.colors.green("All build tasks finished. Build successful!"));
+});
 
 
 // ## THINGS TO RUN FOR PROD BUILDS ## //
 
 gulp.task('clean-prod', function () {
-    
+    return del(['dist/prod']);
 });
 
 gulp.task('build-js-prod', ['ts-lint', 'clean-prod'], function () {
-    return gulp.src(["src/**/*.ts"])
+    return gulp.src(["src/**/*.ts", "public/scripts/**.ts]", "!public/scripts/lib/*.d.ts"])
         .pipe(typescript({
             removeComments: true
         }))
