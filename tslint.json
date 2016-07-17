@@ -1,15 +1,19 @@
 {
   "rules": {
     "class-name": true,
+    "comment-format": [true, "check-space"],
     "curly": true,
-    "eofline": false,
+    "eofline": true,
     "forin": true,
-    "indent": false,
+    "indent": true,
+    "interface-name": true,
     "label-position": true,
     "label-undefined": true,
     "max-line-length": [true, 150],
+    "member-ordering": true,
     "no-arg": true,
     "no-bitwise": true,
+    "no-consecutive-blank-lines": true,
     "no-console": false,
     "no-construct": true,
     "no-constructor-vars": false,
@@ -22,7 +26,7 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
-    "no-unused-variable": false,
+    "no-unused-variable": true,
     "no-unreachable": true,
     "no-use-before-declare": true,
     "no-var-requires": false,
@@ -31,8 +35,10 @@
       "check-open-brace",
       "check-catch",
       "check-else",
-      "check-whitespace"
+      "check-whitespace",
+      "check-finally"
     ],
+    "one-variable-per-declaration": true,
     "quotemark": [true, "double"],
     "semicolon": true,
     "triple-equals": [true, "allow-null-check"],
@@ -43,9 +49,10 @@
       "propertySignature",
       "variableDeclarator",
       "memberVariableDeclarator"],
-    "use-strict": false,
+    "use-strict": true,
     "variable-name": [
       true,
+      "check-format",
       "allow-leading-underscore"
     ],
     "whitespace": [

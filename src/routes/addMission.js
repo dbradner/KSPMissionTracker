@@ -6,7 +6,7 @@ var Route;
         function AddMission() {
         }
         AddMission.prototype.addMission = function (req, res, next) {
-            //render page
+            // render page
             res.render("addMission");
         };
         return AddMission;
