@@ -5,7 +5,8 @@
 import {IMissionModel, IMissionRepo} from "./IMissionRepo";
 import {SeqelizeStorageManager} from "./storageManager";
 import {KSPMissionTrackerConfig} from "../config";
-import sequelize = require("~sequelize/index");
+import * as Sequelize from "sequelize";
+import * as moment from "moment";
 
 export class MissionManager implements IMissionRepo {
     public mission: IMissionModel;
@@ -14,28 +15,29 @@ export class MissionManager implements IMissionRepo {
     constructor() {
         this.storageManager = new SeqelizeStorageManager(KSPMissionTrackerConfig.KSP_MISSION_TRACKER_CONFIG);
         this.mission = this.storageManager.sequelize.define("mission", {
-            "id": {
-                "type": sequelize.INTEGER,
-                "allowNull": false,
-                "primaryKey": true
+            id: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                primaryKey: true,
+                autoIncrement: true
             },
-            "currentstate": {
-                "type": sequelize.INTEGER
+            currentstate: {
+                type: Sequelize.INTEGER
             },
-            "missionname": {
-                "type" : sequelize.STRING(255)
+            missionname: {
+                type: Sequelize.STRING(255)
             },
-            "created": {
-                "type" : sequelize.DATE
+            created: {
+                type: Sequelize.DATE
             },
-            "modified": {
-                "type" : sequelize.DATE
+            modified: {
+                type: Sequelize.DATE
             },
-            "createdby": {
-                "type" : sequelize.STRING(30)
+            createdby: {
+                type: Sequelize.STRING(30)
             },
-            "modifiedby": {
-                "type" : sequelize.STRING(30)
+            modifiedby: {
+                type: Sequelize.STRING(30)
             }
         },
         {
@@ -47,10 +49,14 @@ export class MissionManager implements IMissionRepo {
     }
 
     addMission(aName: string, aStatus: number) {
-        // TODO
+            return this.mission.create({
+                missionname: aName,
+                currentstate: aStatus,
+                created: moment().toString()
+           });
     }
 
-    editMission(aName: string, aStatus: number) {
+    editMission(aName: string, aStatus: string) {
         // TODO
     }
 

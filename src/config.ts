@@ -9,9 +9,9 @@
 import {ISequelizeStorageConfig} from "./repositories/IStorageManager";
 
 class Config {
-    public static DATABASE: string = "SOMETHING";
-    public static USERNAME: string = "SOMETHINGELSE";
-    public static PASSWORD: string = "SOMETHINGELSEELSE";
+    public static DATABASE: string = "KSPMissonTracker";
+    public static USERNAME: string = "KSPMissonTracker_User";
+    public static PASSWORD: string = "07072016";
 }
 
 export class KSPMissionTrackerConfig {

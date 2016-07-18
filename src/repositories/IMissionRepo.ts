@@ -6,9 +6,13 @@ import * as Sequelize from "sequelize";
 import {IMissionStateAttribute} from "./IMissionStateRepo";
 
 export interface IMissionAttribute {
-    id: number;
+    id?: number;
     missionname?: string;
-    currentstate?: string;
+    currentstate?: number;
+    created?: string;
+    modified?: string;
+    createdby?: string;
+    modifiedby?: string;
 }
 
 export interface IMissionInstance extends Sequelize.Instance<IMissionAttribute, IMissionAttribute> {
@@ -20,8 +24,8 @@ export interface IMissionModel extends Sequelize.Model<IMissionInstance, IMissio
 }
 
 export interface IMissionRepo {
-    addMission(aName: string, aStatus: number);
-    editMission(aName: string, aStatus: number);
+    addMission(aName: string, aStatus: string);
+    editMission(aName: string, aStatus: string);
     deleteMission(aName: string);
     getAllMissions();
     getMissionsByName(aName: string);

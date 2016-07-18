@@ -105,6 +105,7 @@ class Server {
         router.get("/addMission", addMission.addMission.bind(addMission.addMission));
         router.get("/editMission", editMission.editMission.bind(editMission.editMission));
         router.get("/deleteMission", deleteMission.deleteMission.bind(deleteMission.deleteMission));
+        router.get("/testAdd", index.testAdd.bind(index.testAdd));
 
         // use router middleware
         this.app.use(router);
