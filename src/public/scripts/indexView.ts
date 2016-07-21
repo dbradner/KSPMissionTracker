@@ -1,4 +1,6 @@
-/// <reference path="lib/jquery.d.ts" />
+/// <reference path="../../_all.d.ts" />
+
+"use strict";
 
 // export class UIAction {
 

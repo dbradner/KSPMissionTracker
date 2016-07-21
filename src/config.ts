@@ -18,3 +18,10 @@ export class KSPMissionTrackerConfig {
     public static KSP_MISSION_TRACKER_CONFIG: ISequelizeStorageConfig = {database: Config.DATABASE,
         username: Config.USERNAME, password: Config.PASSWORD};
 }
+
+export class Constants {
+    public static get STATUS_SUCCESS() : string { return "Success"; }
+    public static get STATUS_PARTIAL_SUCCESS() : string { return "Partial Success"; }
+    public static get STATUS_FAILURE() : string { return "Failure"; }
+    public static get STATUS_ACTIVE() : string { return "Active"; }
+}

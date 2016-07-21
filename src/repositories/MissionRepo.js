@@ -36,7 +36,7 @@ var MissionManager = (function () {
             "tableName": "missions",
             "timestamps": true,
             "createdAt": "created",
-            "updatedAt": "modified"
+            "updatedAt": "modified",
         });
     }
     MissionManager.prototype.addMission = function (aName, aStatus) {
@@ -47,21 +47,32 @@ var MissionManager = (function () {
         });
     };
     MissionManager.prototype.editMission = function (aName, aStatus) {
-        // TODO
+        return this.mission.update({
+            currentstate: aStatus
+        }, {
+            fields: ["currentstate"],
+            where: { name: aName }
+        });
     };
     MissionManager.prototype.deleteMission = function (aName) {
-        // TODO
+        return this.mission.destroy({
+            where: { name: aName }
+        });
     };
     MissionManager.prototype.getAllMissions = function () {
-        // TODO
+        return this.mission.findAll({});
     };
     MissionManager.prototype.getMissionsByName = function (aName) {
-        // TODO
+        return this.mission.find({
+            where: { name: aName }
+        });
     };
     MissionManager.prototype.getMissionsByStatus = function (aStatus) {
-        // TODO
+        return this.mission.findAll({
+            where: { currentstate: aStatus }
+        });
     };
     return MissionManager;
 }());
 exports.MissionManager = MissionManager;
-//# sourceMappingURL=missionRepo.js.map
+//# sourceMappingURL=MissionRepo.js.map

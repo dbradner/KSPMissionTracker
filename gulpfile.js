@@ -14,7 +14,7 @@ var util = require('gulp-util');
 // ## THINGS TO RUN FOR ALL BUILDS ## //
 
 gulp.task('ts-lint', function(){
-    return gulp.src(["src/**/*.ts", "public/scripts/*.ts"])
+    return gulp.src(["src/**/*.ts"])
         .pipe(tslint({
             formatter: 'prose'
         }))
@@ -33,7 +33,9 @@ gulp.task('clean-dev', function () {
 
 gulp.task('build-js-src-dev', ['ts-lint'], function () {
     return gulp.src(["src/**/*.ts"])
-        .pipe(typescript())
+        .pipe(typescript({
+            target: 'ES5'
+        }))
         .pipe(gulp.dest('dist/dev/verbose'))
         .pipe(concat('KSPMT.js'))
         .pipe(uglify())
@@ -42,7 +44,9 @@ gulp.task('build-js-src-dev', ['ts-lint'], function () {
 
 gulp.task('build-js-scripts-dev', ['ts-lint'], function () {
     return gulp.src(["public/scripts/**/*.ts]", "!public/scripts/lib/**/*.d.ts"])
-        .pipe(typescript())
+        .pipe(typescript({
+            target: 'ES5'
+        }))
         .pipe(gulp.dest('dist/dev/verbose/scripts'))
         .pipe(concat('scripts.js'))
         .pipe(uglify())
@@ -50,7 +54,7 @@ gulp.task('build-js-scripts-dev', ['ts-lint'], function () {
 });
 
 gulp.task('build-css-dev', function () {
-   return gulp.src(['public/stylesheets/**.css'])
+   return gulp.src(['src/public/stylesheets/*.css'])
        .pipe(autoprefixer())
        .pipe(gulp.dest('dist/dev/verbose/content/styles'))
        .pipe(cleancss())
@@ -59,12 +63,13 @@ gulp.task('build-css-dev', function () {
 });
 
 gulp.task('build-html-dev', function () {
-    return gulp.src(['views/**.jade'])
+    return gulp.src(['src/views/*.jade'])
         .pipe(jade())
+        .pipe(gulp.dest('dist/dev/verbose/views'))
         .pipe(gulp.dest('dist/dev/views'))
 });
 
-gulp.task('build-all-dev', ['build-js-dev', 'build-css-dev', 'build-html-dev'], function(){
+gulp.task('build-all-dev', ['build-js-src-dev', 'build-js-scripts-dev', 'build-css-dev', 'build-html-dev'], function(){
     util.log(util.colors.green("Build successful! All tasks successfully completed."));
 });
 
@@ -82,7 +87,8 @@ gulp.task('clean-prod', function () {
 gulp.task('build-js-prod', ['ts-lint', 'clean-prod'], function () {
     return gulp.src(["src/**/*.ts", "public/scripts/**.ts]", "!public/scripts/lib/*.d.ts"])
         .pipe(typescript({
-            removeComments: true
+            removeComments: true,
+            target: 'ES5'
         }))
         .pipe(concat('KSPMT.js'))
         .pipe(uglify())

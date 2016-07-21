@@ -24,8 +24,8 @@ export interface IMissionModel extends Sequelize.Model<IMissionInstance, IMissio
 }
 
 export interface IMissionRepo {
-    addMission(aName: string, aStatus: string);
-    editMission(aName: string, aStatus: string);
+    addMission(aName: string, aStatus: number);
+    editMission(aName: string, aStatus: number);
     deleteMission(aName: string);
     getAllMissions();
     getMissionsByName(aName: string);
