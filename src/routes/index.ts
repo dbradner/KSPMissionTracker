@@ -25,6 +25,7 @@ module Route {
                 console.log(response[1].getDataValue("missionname"));
             });
             // res.json(Index.missionManager.getAllMissions());
+            //somechanges.
             res.render("index");
 
         }
