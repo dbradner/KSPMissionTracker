@@ -9,6 +9,7 @@ import * as Sequelize from "sequelize";
 import * as moment from "moment";
 
 export class MissionManager implements IMissionRepo {
+
     public mission: IMissionModel;
     public storageManager: SeqelizeStorageManager;
 

@@ -10,11 +10,18 @@ html( lang="en" )
         meta( name='description', content='TESTING' )
 
     block content
-        script( src='scripts/indexView.js' )
+        script( src='scripts/bundle.js' )
         script.
             $("#rowFilter").keyup(function(){
                 filterRows($(this).val().toString().toLowerCase());
             })
+
+            var missionList =!{JSON.stringify(missionList)}
+
+            $(function() {
+                var IndexUiAction = new IndexUiAction(missionList);
+                IndexUiAction.initPage(".content-table");
+            });
 
         .row
             .col-md-12
@@ -45,34 +52,34 @@ html( lang="en" )
 
         .row
             .col-md-12
-                table.table.table-striped.table-bordered
+                table.table.table-striped.table-bordered.content-table
                     thead
                         tr
                             th #
                             th Name
                             th Date
                             th Other
-                    tbody
-                        tr().success
-                            th 1
-                            td.name-col-filterable Daniel
-                            td The Dude
-                            td Some stuff
-
-                        tr.warning
-                            th 1
-                            td.name-col-filterable Potator
-                            td The Dude
-                            td Some stuff
-
-                        tr.danger
-                            th 1
-                            td.name-col-filterable Testing123
-                            td The Dude
-                            td Some stuff
-
-                        tr.other
-                            th 1
-                            td.name-col-filterable Hey Man, What's up
-                            td The Dude
-                            td Some stuff
+                    //tbody
+                    //    tr().success
+                    //        th 1
+                    //        td.name-col-filterable #{missionList[0].missionname}
+                    //        td #{missionList[0].created}
+                    //        td #{missionList[0].missionname}
+                    //
+                    //    tr.warning
+                    //        th 1
+                    //        td.name-col-filterable #{missionList[1].missionname}
+                    //        td The Dude
+                    //        td Some stuff
+                    //
+                    //    tr.danger
+                    //        th 1
+                    //        td.name-col-filterable #{missionList[2].missionname}
+                    //        td The Dude
+                    //        td Some stuff
+                    //
+                    //    tr.other
+                    //        th 1
+                    //        td.name-col-filterable.replaceable It didn't work
+                    //        td The Dude
+                    //        td Some stuff

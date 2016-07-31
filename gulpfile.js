@@ -1,15 +1,18 @@
 var gulp = require('gulp');
 
 var autoprefixer = require('gulp-autoprefixer');
+var glob = require('glob').sync;
+var browserify = require('browserify');
 var cleancss = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var del = require('del');
 var jade = require('gulp-jade');
+var source = require('vinyl-source-stream');
 var tslint = require('gulp-tslint');
 var typescript = require('gulp-typescript');
 var uglify = require('gulp-uglify');
 var util = require('gulp-util');
-
+var watchify = require("watchify");
 
 // ## THINGS TO RUN FOR ALL BUILDS ## //
 
@@ -22,6 +25,19 @@ gulp.task('ts-lint', function(){
             emitError: false,
             summarizeFailureOutput: true
         }))
+});
+
+gulp.task('browserify', function(){
+    return browserify({
+        basedir: '.',
+        debug: true,
+        entries: glob('src/public/scripts/**/*.js'),
+        cache: {},
+        packageCache: {}
+    })
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest("src/public/scripts"));
 });
 
 
@@ -43,7 +59,7 @@ gulp.task('build-js-src-dev', ['ts-lint'], function () {
 });
 
 gulp.task('build-js-scripts-dev', ['ts-lint'], function () {
-    return gulp.src(["public/scripts/**/*.ts]", "!public/scripts/lib/**/*.d.ts"])
+    return gulp.src(["src/public/scripts/**/*.ts"])
         .pipe(typescript({
             target: 'ES5'
         }))
@@ -104,3 +120,44 @@ gulp.task('build-all-prod', ['ts-lint'], function(){
 // gulp.task('default', ['build-all'], function(){
 //
 // });
+
+// ## WATCHERS ## //
+
+gulp.task("browserify-start", function(){
+
+    var watchedBrowserify = browserify({
+        entries: glob('src/public/scripts/**/*.js'),
+        cache: {},
+        packageCache: {}
+    })
+        .plugin(watchify);
+
+
+
+    watchedBrowserify.on("update", bundle);
+    watchedBrowserify.on("log", util.log);
+    bundle();
+});
+
+function bundle(bundler) {
+    bundler
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest("src/public/scripts"));
+}
+
+gulp.task('browserify-start', function() {
+    var bundler = browserify({
+        entries: glob('src/public/scripts/**/*.js'),
+        cache: {},
+        packageCache: {}
+    }) // Browserify
+        .plugin(watchify);
+
+    bundle(bundler); // Run the bundle the first time (required for Watchify to kick in)
+
+    bundler.on('update', function() {
+        util.log("update");
+        bundle(bundler); // Re-run bundle on source updates
+    });
+});

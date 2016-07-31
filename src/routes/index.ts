@@ -21,13 +21,14 @@ module Route {
 
         public index(req: express.Request, res: express.Response, next: express.NextFunction) {
             Index.initIndex();
-            var missions = Index.missionManager.getAllMissions().then( function (response: any) {
-                console.log(response[1].getDataValue("missionname"));
+            // TODO actual type
+            Index.missionManager.getAllMissions().then(function (rows: any) {
+                var missionList = rows.map(function(obj: any){
+                    return obj.dataValues;
+                });
+                console.log(missionList[0].missionname);
+                res.render("index", {missionList});
             });
-            // res.json(Index.missionManager.getAllMissions());
-            //somechanges.
-            res.render("index");
-
         }
 
         public testAdd(req: express.Request, res: express.Response, next: express.NextFunction) {
