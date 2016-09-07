@@ -13,15 +13,17 @@ html( lang="en" )
         script( src='scripts/bundle.js' )
         script.
             $("#rowFilter").keyup(function(){
-                filterRows($(this).val().toString().toLowerCase());
+                IndexUiAction.filterRows($(this).val().toString().toLowerCase());
             })
 
-            var missionList =!{JSON.stringify(missionList)}
+            var missionList =!{JSON.stringify(missionList)};
 
-            $(function() {
-                var IndexUiAction = new IndexUiAction(missionList);
-                IndexUiAction.initPage(".content-table");
+            $(function () {
+                IndexUiAction.setPageData(missionList);
+                IndexUiAction.initPage("content-table");
             });
+
+        input(type='hidden' id='missionListHolder')
 
         .row
             .col-md-12
