@@ -2,16 +2,18 @@
 "use strict";
 var constants_1 = require("./constants");
 var IndexUiAction = (function () {
-    function IndexUiAction(data) {
-        this.pageData = null;
-        this.pageData = data;
+    function IndexUiAction() {
+        // TODO Do nothing for now, maybe remove.
     }
-    IndexUiAction.prototype.initPage = function (tableElementClass) {
+    IndexUiAction.initPage = function (tableElementClass) {
         for (var count = 0; count < this.pageData.length; count++) {
             var row = document.createElement(constants_1.globalConstants.DOM_ROW);
             row.append(constants_1.globalConstants.DOM_CELL).html(this.pageData[count].missionname);
             $(tableElementClass).append(row);
         }
+    };
+    IndexUiAction.setPageData = function (data) {
+        this.pageData = data;
     };
     IndexUiAction.filterRows = function (value) {
         $(".name-col-filterable").filter(function () {
@@ -22,6 +24,7 @@ var IndexUiAction = (function () {
         }).closest("tr").show();
     };
     ;
+    IndexUiAction.pageData = null;
     return IndexUiAction;
 }());
 exports.IndexUiAction = IndexUiAction;

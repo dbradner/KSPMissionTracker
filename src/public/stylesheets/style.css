@@ -24,7 +24,7 @@ a {
 .btn-other:active,
 .btn-other.active,
 .open .dropdown-toggle.btn-other {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #542BAC;
     border-color: #341B6C;
 }

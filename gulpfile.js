@@ -33,7 +33,8 @@ gulp.task('browserify', function(){
         debug: true,
         entries: glob('src/public/scripts/**/*.js'),
         cache: {},
-        packageCache: {}
+        packageCache: {},
+        standalone: "indexView.js"
     })
     .bundle()
     .pipe(source('bundle.js'))

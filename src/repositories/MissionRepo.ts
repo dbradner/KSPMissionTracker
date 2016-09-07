@@ -45,7 +45,7 @@ export class MissionManager implements IMissionRepo {
                 "tableName": "missions",
                 "timestamps": true,
                 "createdAt": "created",
-                "updatedAt": "modified",
+                "updatedAt": "modified"
             });
     }
 

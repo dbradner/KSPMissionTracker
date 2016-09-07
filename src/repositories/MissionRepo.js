@@ -36,7 +36,7 @@ var MissionManager = (function () {
             "tableName": "missions",
             "timestamps": true,
             "createdAt": "created",
-            "updatedAt": "modified",
+            "updatedAt": "modified"
         });
     }
     MissionManager.prototype.addMission = function (aName, aStatus) {
