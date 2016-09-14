@@ -16,7 +16,7 @@ html( lang="en" )
                 IndexUiAction.filterRows($(this).val().toString().toLowerCase());
             })
 
-            var missionList =!{JSON.stringify(missionList)};
+            var missionList = JSON.stringify(missionList);
 
             $(function () {
                 IndexUiAction.setPageData(missionList);

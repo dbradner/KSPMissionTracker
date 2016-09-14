@@ -25,30 +25,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-var IndexUiAction = function(){
-
-    var _pageData = null;
-
-    var _missionList = JSON.stringify(missionList);
-
-    var initPage = function(tableElementClass) {
-        for (var count = 0; count < _pageData.length; count++) {
-            var row = document.createElement(constants.DOM_ROW);
-            row.append(constants.DOM_CELL).html(_pageData[count].missionname);
-            $(tableElementClass).append(row);
-        }
-    };
-
-    var setPageData = function (data) {
-        _pageData = data;
-    };
-
-    var filterRows =function (value) {
-        $(constants.FILTERABLE_COL_SELECTOR).filter(function () {
-            return !($(this).text().toString().toLowerCase().includes(value));
-        }).closest("tr").hide();
-        $(constants.FILTERABLE_COL_SELECTOR).filter(function () {
-            return $(this).text().toString().toLowerCase().includes(value);
-        }).closest("tr").show();
-    };
-};
+var constants = function(){
+    "use strict";
+    return {
+        DOM_ROW : "tr",
+        DOM_CEll : "td",
+        FILTERABLE_COL_SELECTOR : ".name-col-filterable"
+    }
+}

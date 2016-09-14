@@ -26,7 +26,6 @@ module Route {
                 var missionList = rows.map(function(obj: any){
                     return obj.dataValues;
                 });
-                console.log(missionList[0].missionname);
                 res.render("index", {missionList});
             });
         }
