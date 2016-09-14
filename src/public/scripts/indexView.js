@@ -30,11 +30,55 @@ var IndexUiAction = function(){
     var _pageData = null;
 
     var initPage = function(tableElementClass) {
+        var success = 0;
+        var partial = 0;
+        var fail = 0;
+        var active = 0;
+        var planning = 0;
+
         for (var count = 0; count < _pageData.length; count++) {
             var row = document.createElement("tr");
-            $(row).append("td").html(_pageData[count].missionname);
+            var numberCell = document.createElement("td");
+            var nameCell = document.createElement("td");
+            var dateCell = document.createElement("td");
+            var otherCell = document.createElement("td");
+
+            $(numberCell).html(count+1);
+            $(row).append(numberCell);
+
+            $(nameCell).html(_pageData[count].missionname);
+            $(row).append(nameCell);
+
+            $(dateCell).html(moment(_pageData[count].modified).format("HH:MM:SS M/D/YY"));
+            $(row).append(dateCell);
+
+            $(otherCell).html("N/A for now.");
+            $(row).append(otherCell);
+
             $(tableElementClass).append(row);
+
+            if (_pageData[count].currentstate === 1){
+                success++;
+            }
+            else if (_pageData[count].currentstate === 2){
+                partial++;
+            }
+            else if (_pageData[count].currentstate === 3){
+                fail++;
+            }
+            else if (_pageData[count].currentstate === 4){
+                active++;
+            }
+            else {
+                planning++;
+            }
         }
+
+        $(".success-badge").html(success);
+        $(".partialSuccess-badge").html(partial);
+        $(".failure-badge").html(fail);
+        $(".active-badge").html(active);
+        $(".planning-badge").html(planning);
     };
 
     var setPageData = function (data) {

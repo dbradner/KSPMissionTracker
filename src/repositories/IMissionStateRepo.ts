@@ -13,6 +13,10 @@ export interface IMissionStateInstance extends Sequelize.Instance<IMissionStateA
     setMissionStatus: Sequelize.BelongsToSetAssociationMixin<IMissionStateAttribute, number>;
 }
 
-export interface IMissonStateModel extends Sequelize.Model<IMissionStateInstance, IMissionStateAttribute> {
+export interface IMissionStateModel extends Sequelize.Model<IMissionStateInstance, IMissionStateAttribute> {
 
+}
+
+export interface IMissionStateRepo {
+    getMissionState(missionStateId: number);
 }
