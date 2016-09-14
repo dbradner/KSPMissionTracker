@@ -10,17 +10,18 @@ html( lang="en" )
         meta( name='description', content='TESTING' )
 
     block content
-        script( src='scripts/bundle.js' )
-        script.
+        script( src='scripts/indexView.js' )
+        script(type='text/javascript').
             $("#rowFilter").keyup(function(){
                 IndexUiAction.filterRows($(this).val().toString().toLowerCase());
-            })
+            });
 
-            var missionList = JSON.stringify(missionList);
+            var missionStuff =!{JSON.stringify(missionList)};
 
             $(function () {
-                IndexUiAction.setPageData(missionList);
-                IndexUiAction.initPage("content-table");
+                console.log("Inside the func" + missionStuff);
+                IndexUiAction.setPageData(missionStuff);
+                IndexUiAction.initPage(".content-table");
             });
 
         input(type='hidden' id='missionListHolder')

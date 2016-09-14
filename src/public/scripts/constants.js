@@ -29,7 +29,7 @@ var constants = function(){
     "use strict";
     return {
         DOM_ROW : "tr",
-        DOM_CEll : "td",
+        DOM_CELL : "td",
         FILTERABLE_COL_SELECTOR : ".name-col-filterable"
     }
 }

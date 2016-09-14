@@ -29,12 +29,10 @@ var IndexUiAction = function(){
 
     var _pageData = null;
 
-    var _missionList = JSON.stringify(missionList);
-
     var initPage = function(tableElementClass) {
         for (var count = 0; count < _pageData.length; count++) {
-            var row = document.createElement(constants.DOM_ROW);
-            row.append(constants.DOM_CELL).html(_pageData[count].missionname);
+            var row = document.createElement("tr");
+            $(row).append("td").html(_pageData[count].missionname);
             $(tableElementClass).append(row);
         }
     };
@@ -51,4 +49,10 @@ var IndexUiAction = function(){
             return $(this).text().toString().toLowerCase().includes(value);
         }).closest("tr").show();
     };
-};
+
+    return {
+        initPage : initPage,
+        setPageData : setPageData,
+        filterRows : filterRows
+    };
+}();
