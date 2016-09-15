@@ -40,7 +40,7 @@ module Route {
                 .catch(function (err: JSON) {
                     console.log("Unable to connect to the database:", err);
                 });
-            Index.missionManager.addMission("testing12346", 1);
+            Index.missionManager.addMission("test", 3);
         }
     }
 }

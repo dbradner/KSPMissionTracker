@@ -55,23 +55,28 @@ var IndexUiAction = function(){
             $(otherCell).html("N/A for now.");
             $(row).append(otherCell);
 
-            $(tableElementClass).append(row);
-
             if (_pageData[count].currentstate === 1){
+                $(row).addClass("success");
                 success++;
             }
             else if (_pageData[count].currentstate === 2){
+                $(row).addClass("warning");
                 partial++;
             }
             else if (_pageData[count].currentstate === 3){
+                $(row).addClass("danger");
                 fail++;
             }
             else if (_pageData[count].currentstate === 4){
+                $(row).addClass("other");
                 active++;
             }
             else {
+                $(row).addClass("info");
                 planning++;
             }
+
+            $(tableElementClass).append(row);
         }
 
         $(".success-badge").html(success);
